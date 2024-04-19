@@ -3,6 +3,8 @@ import db from "@repo/db/client"
 
 const app = express();
 
+app.use(express.json())
+
 
 //Bank will let know BE that money was transfered
 //tod check zod and if req coming from hdfc server or not
@@ -13,7 +15,7 @@ app.post("/hdfcWebhook", async (req,res)=>{
         userId: string;
         amount: string
     } = {
-        token: req.body.token,
+        token: req.body.token || "",
         userId: req.body.user_identifier,
         amount: req.body.amount
     };
